@@ -1,0 +1,2 @@
+###Potential energy of a spring%%%(1/2)ks^2
+###Gravitational Constant%%%6.67x10^-11
