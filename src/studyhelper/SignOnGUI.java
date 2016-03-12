@@ -6,7 +6,9 @@
 
 package studyhelper;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,15 +58,19 @@ public class SignOnGUI extends JFrame{
         signInMessage = new JLabel("Please either sign in, or create a new account.");
         userLabel = new JLabel("Username");
         userName = new JTextArea();
+        userName.setBorder(BorderFactory.createEtchedBorder());
         passwordLabel = new JLabel("Password");
         password = new JPasswordField();
+        password.setBorder(BorderFactory.createEtchedBorder());
         signIn = new JButton("Sign in");
         createAccount = new JButton("Create new account");
         errorMessage = new JLabel();
         
         container = new JPanel();
         userCon = new JPanel();
+        userCon.setBorder(BorderFactory.createEmptyBorder(25,0,0,0));
         passCon = new JPanel();
+        passCon.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
         buttons = new JPanel();
         
         userName.setPreferredSize(new Dimension(200, 18));

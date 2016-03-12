@@ -8,6 +8,8 @@ package studyhelper;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,6 +28,31 @@ public class SignOn implements ActionListener{
     private JPasswordField passwordText;
     private JLabel errorMessage;
     
+    private class TabListener implements KeyListener{
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == KeyEvent.VK_TAB){
+                userNameText.transferFocus();
+                // The tab is still added to the JTextArea, so it must be removed
+                String text = removeTab(userNameText.getText());
+                userNameText.setText(text);
+            }
+        }
+        public void keyPressed(KeyEvent e) {}
+        public void keyReleased(KeyEvent e) {}
+        
+        // Takes the text from the JTextArea, splits the String using the tab key
+        // as the delimiter, and then putting it back together. This gets rid of
+        // the tabs.
+        private String removeTab(String text){
+            String[] splitText = text.split("\\t");
+            String newText = "";
+            for (int i = 0; i < splitText.length; i++){
+                newText += splitText[i];
+            }
+            return newText;
+        }
+    }
+    
     public SignOn(SignOnGUI theGUI){
         gui = theGUI;
         userNameText = gui.getUserName();
@@ -33,6 +60,8 @@ public class SignOn implements ActionListener{
         errorMessage = gui.getErrorMessage();
         gui.getSignInButton().addActionListener(this);
         gui.getCreateAccountButton().addActionListener(this);
+        userNameText.addKeyListener(new TabListener());
+        
     }
     
     public void actionPerformed(ActionEvent e) {
